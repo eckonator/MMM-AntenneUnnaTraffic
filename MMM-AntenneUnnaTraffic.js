@@ -149,7 +149,7 @@ Module.register("MMM-AntenneUnnaTraffic", {
 				});
 			} else {
 				var noData = []
-				noData.push({'message' : 'Es liegen keine aktuellen Warnungen vor. '});
+				noData.push({'message' : 'Es liegen keine aktuellen Störungen vor. '});
 				noData.forEach(function (item, index) {
 					pushToItems('fa-smile-beam', item, index)
 				});
