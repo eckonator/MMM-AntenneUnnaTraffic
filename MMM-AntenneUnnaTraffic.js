@@ -23,6 +23,12 @@ Module.register("MMM-AntenneUnnaTraffic", {
 		return ['font-awesome.css'];
 	},
 
+	getScripts: function() {
+		return [
+			'MMM-AntenneUnnaTraffic.css'
+		];
+	},
+
 	scheduleUpdate: function () {
 		var self = this;
 		setInterval(function () {
@@ -53,7 +59,7 @@ Module.register("MMM-AntenneUnnaTraffic", {
 		wrapper.className = "xsmall";
 
 		if (!this.jsonData) {
-			wrapper.innerHTML = "Awaiting json data...";
+			wrapper.innerHTML = "Daten werden geladen...";
 			return wrapper;
 		}
 		
@@ -80,28 +86,70 @@ Module.register("MMM-AntenneUnnaTraffic", {
 		}
 
 		if(this.config.arrayName === 'overregional.accident') {
-			if (this.jsonData['overregional']['accident'] instanceof Array) {
+			if (this.jsonData['overregional']['accident'] instanceof Array && this.jsonData['overregional']['accident'].length > 0) {
 				this.jsonData['overregional']['accident'].forEach(function (item, index) {
 					pushToItems('fa-car-crash', item, index)
 				});
 			} else {
-				var noAccidents = []
-				noAccidents.push({'message' : 'Zur Zeit keine Unfälle gemeldet.'});
-				noAccidents.forEach(function (item, index) {
+				var noData = []
+				noData.push({'message' : 'Es liegen keine aktuellen Meldungen über Unfälle vor. '});
+				noData.forEach(function (item, index) {
 					pushToItems('fa-smile-beam', item, index)
 				});
 			}
 		}
 
 		if(this.config.arrayName === 'overregional.construction') {
-			if (this.jsonData['overregional']['construction'] instanceof Array) {
+			if (this.jsonData['overregional']['construction'] instanceof Array && this.jsonData['overregional']['construction'].length > 0) {
 				this.jsonData['overregional']['construction'].forEach(function (item, index) {
 					pushToItems('fa-hard-hat', item, index)
 				});
 			} else {
-				var noAccidents = []
-				noAccidents.push({'message' : 'Zur Zeit keine Baustellen gemeldet.'});
-				noAccidents.forEach(function (item, index) {
+				var noData = []
+				noData.push({'message' : 'Es liegen keine aktuellen Meldungen über Baustellen vor. '});
+				noData.forEach(function (item, index) {
+					pushToItems('fa-smile-beam', item, index)
+				});
+			}
+		}
+
+		if(this.config.arrayName === 'overregional.trafficjam') {
+			if (this.jsonData['overregional']['trafficjam'] instanceof Array && this.jsonData['overregional']['trafficjam'].length > 0) {
+				this.jsonData['overregional']['trafficjam'].forEach(function (item, index) {
+					pushToItems('fa-road', item, index)
+				});
+			} else {
+				var noData = []
+				noData.push({'message' : 'Es liegen keine aktuellen Meldungen über Staus vor. '});
+				noData.forEach(function (item, index) {
+					pushToItems('fa-smile-beam', item, index)
+				});
+			}
+		}
+
+		if(this.config.arrayName === 'overregional.warning') {
+			if (this.jsonData['overregional']['warning'] instanceof Array && this.jsonData['overregional']['warning'].length > 0) {
+				this.jsonData['overregional']['warning'].forEach(function (item, index) {
+					pushToItems('fa-exclamation-triangle', item, index)
+				});
+			} else {
+				var noData = []
+				noData.push({'message' : 'Es liegen keine aktuellen Warnungen vor. '});
+				noData.forEach(function (item, index) {
+					pushToItems('fa-smile-beam', item, index)
+				});
+			}
+		}
+
+		if(this.config.arrayName === 'local.radars') {
+			if (this.jsonData['radars'] instanceof Array && this.jsonData['radars'].length > 0) {
+				this.jsonData['radars'].forEach(function (item, index) {
+					pushToItems('fa-camera', item, index)
+				});
+			} else {
+				var noData = []
+				noData.push({'message' : 'Es liegen keine aktuellen Meldungen über Blitzer vor. '});
+				noData.forEach(function (item, index) {
 					pushToItems('fa-smile-beam', item, index)
 				});
 			}
@@ -111,8 +159,8 @@ Module.register("MMM-AntenneUnnaTraffic", {
 
 		// Check if items is of type array
 		if (!(items instanceof Array)) {
-			wrapper.innerHTML = "Json data is not of type array! " +
-				"Maybe the config arrayName is not used and should be, or is configured wrong";
+			wrapper.innerHTML = "Json-Daten sind nicht vom Typ Array! " +
+				"Möglicherweise wurde der Parameter arrayName nicht oder falsch konfiguriert?";
 			return wrapper;
 		}
 
@@ -144,7 +192,11 @@ Module.register("MMM-AntenneUnnaTraffic", {
 				}
 			}
 
-			var cellText = document.createTextNode(valueToDisplay);
+			//var cellText = document.createTextNode(valueToDisplay);
+
+			var cellText = document.createElement("span");
+			cellText.innerHTML = valueToDisplay;
+
 
 			if ( this.config.size > 0 && this.config.size < 9 ){
 				var h = document.createElement("H" + this.config.size );

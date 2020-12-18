@@ -1,0 +1,12 @@
+.MMM-AntenneUnnaTraffic table {
+    width: auto;
+    max-width: 600px;
+}
+
+.MMM-AntenneUnnaTraffic table tr td {
+    padding: 4px 0 4px;
+}
+
+.MMM-AntenneUnnaTraffic table tr td.fa {
+    width: 40px;
+}
