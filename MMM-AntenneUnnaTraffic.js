@@ -79,10 +79,25 @@ Module.register("MMM-AntenneUnnaTraffic", {
 		function pushToItems(icon, item, index) {
 			//console.log(item['message']);
 			//items.push('<i class="fas fa-car-crash"></i> ' + item['message']);
-			items.push({
-				'icon' : icon,
-				'data' : item['message']
-			});
+			var message = item['message'].replace(', ,',',');
+			if(item['autobahn'] === undefined) {
+				items.push({
+					'icon' : icon,
+					'data' : message
+				});
+			} else {
+				if(item['direction'] === undefined) {
+					items.push({
+						'icon' : icon,
+						'data' : item['autobahn'] + '<br />' + message
+					});
+				} else {
+					items.push({
+						'icon' : icon,
+						'data' : item['autobahn'] + ': ' + item['direction'] + '<br />' + message
+					});
+				}
+			}
 		}
 
 		if(this.config.arrayName === 'overregional.accident') {
