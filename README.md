@@ -5,7 +5,16 @@ Forked and customized from MMM-JsonTable Module.
 
 ## Installation
 ````
+cd ~/MagicMirror/modules/
 git clone https://github.com/eckonator/MMM-AntenneUnnaTraffic.git
+cd ~/MagicMirror/modules/MMM-AntenneUnnaTraffic
+npm install
+````
+
+After MagicMirror Update, maybe it can help to run:
+````
+cd ~/MagicMirror/modules/MMM-AntenneUnnaTraffic
+./node_modules/.bin/MagicMirror-rebuild
 ````
 
 ## Config Options

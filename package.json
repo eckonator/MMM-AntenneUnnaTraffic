@@ -1,0 +1,26 @@
+{
+  "name": "mmm-antenneunnatraffic",
+  "version": "0.1.0",
+  "description": "A module for the MagicMirror project which creates a table filled with traffic data from radio unna in germany.",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "postinstall": ""
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eckonator/MMM-AntenneUnnaTraffic.git"
+  },
+  "keywords": [
+    "MagicMirror"
+  ],
+  "author": "M. Eckert",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/eckonator/MMM-AntenneUnnaTraffic#readme2/issues"
+  },
+  "homepage": "https://github.com/eckonator/MMM-AntenneUnnaTraffic#readme2#readme",
+  "dependencies": {
+    "request": "^2.81.0",
+    "magicmirror-rebuild": "latest"
+  }
+}
